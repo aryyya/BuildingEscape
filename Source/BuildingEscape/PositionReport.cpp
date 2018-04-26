@@ -19,8 +19,9 @@ void UPositionReport::BeginPlay()
     
     const AActor* Owner = GetOwner();
     const FString Name = Owner->GetName();
-
-    UE_LOG(LogTemp, Warning, TEXT("PositionReport %s reporting for duty!\n"), *Name);
+    const FVector Location = Owner->GetActorLocation();
+    const FString Position = FString::Printf(TEXT("X=%f Y=%f Z=%f"), Location.X, Location.Y, Location.Z);
+    UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *Name, *Position)
 }
 
 
