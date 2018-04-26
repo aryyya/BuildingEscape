@@ -16,9 +16,11 @@ UPositionReport::UPositionReport()
 void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
+    
+    const AActor* Owner = GetOwner();
+    const FString Name = Owner->GetName();
 
-	// ...
-	
+    UE_LOG(LogTemp, Warning, TEXT("PositionReport %s reporting for duty!\n"), *Name);
 }
 
 
