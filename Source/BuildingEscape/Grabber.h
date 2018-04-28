@@ -15,4 +15,7 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
+	
+private:
+	AActor* Owner;
 };
