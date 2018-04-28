@@ -1,5 +1,6 @@
 #include "Grabber.h"
 #include "Runtime/Engine/Public/DrawDebugHelpers.h"
+//#include "Runtime/Engine/Classes/Engine/World.h"
 
 #define OUT
 
@@ -38,9 +39,24 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		false,
 		0.0f,
 		0,
-		10.0f);
+		1.0f);
 	
-	// Ray-cast out to reach distance.
+	// Setup query parameters.
+	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
+	
+	// Line-trace (ray-cast) out to reach distance.
+	FHitResult Hit;
+	GetWorld()->LineTraceSingleByObjectType(
+		OUT Hit,
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		TraceParameters);
 	
 	// See what we hit.
+	const AActor* HitActor = Hit.GetActor();
+	if (HitActor)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *HitActor->GetName())
+	}
 }
