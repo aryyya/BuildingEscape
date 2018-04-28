@@ -18,4 +18,7 @@ protected:
 	
 private:
 	AActor* Owner;
+	
+	UPROPERTY(EditAnywhere)
+	float Reach = 100.0f;
 };
